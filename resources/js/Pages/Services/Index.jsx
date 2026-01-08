@@ -1,10 +1,11 @@
-import { Head, router } from '@inertiajs/react';
+import { Head, router, Link, usePage } from '@inertiajs/react';
 import { useState } from 'react';
 import PublicLayout from '@/Layouts/PublicLayout';
 import ServiceCard from '@/Components/ServiceCard';
-import { Search, X } from 'lucide-react';
+import { Search, X, MessageSquare, ArrowRight } from 'lucide-react';
 
 export default function ServicesIndex({ services, filters }) {
+    const { auth } = usePage().props;
     const [search, setSearch] = useState(filters.search || '');
 
     const handleSearch = (e) => {
@@ -69,6 +70,44 @@ export default function ServicesIndex({ services, filters }) {
                         <p className="text-gray-500">Coba gunakan kata kunci lain untuk pencarian</p>
                     </div>
                 )}
+
+                {/* Reporting Section */}
+                <div className="mt-16 bg-gradient-to-r from-sky-500 to-sky-600 rounded-2xl p-8 md:p-12 text-white">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div className="flex items-start space-x-4">
+                            <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <MessageSquare className="w-7 h-7 text-white" />
+                            </div>
+                            <div>
+                                <h3 className="text-xl md:text-2xl font-bold mb-2">Layanan Pelaporan Masyarakat</h3>
+                                <p className="text-sky-100 max-w-xl">
+                                    Sampaikan laporan, aspirasi, atau pengaduan Anda terkait bidang Keuangan Daerah, 
+                                    Perindustrian dan Perdagangan, Koperasi dan UMKM, Energi dan Sumber Daya Mineral, 
+                                    serta Pariwisata dan Ekonomi Kreatif.
+                                </p>
+                            </div>
+                        </div>
+                        <div className="flex-shrink-0">
+                            {auth.user ? (
+                                <Link
+                                    href="/user/reports/create"
+                                    className="inline-flex items-center px-6 py-3 bg-white text-sky-600 font-semibold rounded-xl hover:bg-sky-50 transition-colors"
+                                >
+                                    Buat Laporan
+                                    <ArrowRight className="ml-2 w-5 h-5" />
+                                </Link>
+                            ) : (
+                                <Link
+                                    href="/register"
+                                    className="inline-flex items-center px-6 py-3 bg-white text-sky-600 font-semibold rounded-xl hover:bg-sky-50 transition-colors"
+                                >
+                                    Daftar untuk Melapor
+                                    <ArrowRight className="ml-2 w-5 h-5" />
+                                </Link>
+                            )}
+                        </div>
+                    </div>
+                </div>
             </div>
         </PublicLayout>
     );

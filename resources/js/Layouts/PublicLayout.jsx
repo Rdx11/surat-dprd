@@ -1,14 +1,16 @@
 import { Link, usePage } from '@inertiajs/react';
 import { useState } from 'react';
-import { Menu, X, Home, FileText, Image, Phone, ChevronRight } from 'lucide-react';
+import { Menu, X, Home, FileText, Image, Phone, ChevronRight, MessageSquare } from 'lucide-react';
 
 export default function PublicLayout({ children, title }) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const { url } = usePage();
+    const { auth } = usePage().props;
 
     const navigation = [
         { name: 'Beranda', href: '/', icon: Home },
         { name: 'Alur SOP', href: '/layanan', icon: FileText },
+        { name: 'Pelaporan', href: auth?.user ? '/user/reports' : '/login', icon: MessageSquare },
         { name: 'Galeri', href: '/galeri', icon: Image },
         { name: 'Kontak', href: '/kontak', icon: Phone },
     ];

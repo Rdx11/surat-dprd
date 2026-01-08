@@ -1,6 +1,6 @@
 import { Head } from '@inertiajs/react';
 import AdminLayout from '@/Layouts/AdminLayout';
-import { FileText, Image, CheckCircle, Archive } from 'lucide-react';
+import { FileText, Image, CheckCircle, Archive, MessageSquare, Clock } from 'lucide-react';
 
 export default function Dashboard({ stats }) {
     const statCards = [
@@ -28,13 +28,25 @@ export default function Dashboard({ stats }) {
             icon: Image,
             color: 'bg-violet-500',
         },
+        {
+            title: 'Total Laporan',
+            value: stats.totalReports,
+            icon: MessageSquare,
+            color: 'bg-indigo-500',
+        },
+        {
+            title: 'Laporan Pending',
+            value: stats.pendingReports,
+            icon: Clock,
+            color: 'bg-orange-500',
+        },
     ];
 
     return (
         <AdminLayout header="Dashboard">
             <Head title="Dashboard - Admin" />
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {statCards.map((stat, index) => (
                     <div key={index} className="bg-white rounded-xl shadow-sm border p-6">
                         <div className="flex items-center justify-between">
@@ -56,7 +68,7 @@ export default function Dashboard({ stats }) {
                     Gunakan menu di sebelah kiri untuk mengelola konten website Sistem Informasi 
                     Layanan DPRD Sumbawa.
                 </p>
-                <div className="mt-4 grid md:grid-cols-4 gap-4">
+                <div className="mt-4 grid md:grid-cols-5 gap-4">
                     <div className="p-4 bg-sky-50 rounded-lg">
                         <h3 className="font-medium text-gray-900 mb-2">Kelola Alur SOP</h3>
                         <p className="text-sm text-gray-600">
@@ -67,6 +79,12 @@ export default function Dashboard({ stats }) {
                         <h3 className="font-medium text-gray-900 mb-2">Arsip Laporan</h3>
                         <p className="text-sm text-gray-600">
                             Upload dan kelola arsip laporan dalam format PDF atau Word.
+                        </p>
+                    </div>
+                    <div className="p-4 bg-sky-50 rounded-lg">
+                        <h3 className="font-medium text-gray-900 mb-2">Laporan Masyarakat</h3>
+                        <p className="text-sm text-gray-600">
+                            Kelola dan tanggapi laporan dari masyarakat/mahasiswa.
                         </p>
                     </div>
                     <div className="p-4 bg-sky-50 rounded-lg">

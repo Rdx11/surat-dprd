@@ -1,10 +1,12 @@
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import PublicLayout from '@/Layouts/PublicLayout';
 import BannerSlider from '@/Components/BannerSlider';
 import ServiceCard from '@/Components/ServiceCard';
-import { ArrowRight, Image, Clock, MapPin, Phone } from 'lucide-react';
+import { ArrowRight, Image, Clock, MapPin, Phone, MessageSquare } from 'lucide-react';
 
 export default function Home({ services, galleries, officeInfo, banners }) {
+    const { auth } = usePage().props;
+    
     return (
         <PublicLayout>
             <Head title="Beranda - DPRD Sumbawa" />
@@ -122,6 +124,69 @@ export default function Home({ services, galleries, officeInfo, banners }) {
                     </div>
                 </section>
             )}
+
+            {/* Reporting Section */}
+            <section className="py-16 bg-gray-50">
+                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div className="bg-gradient-to-r from-sky-500 to-sky-600 rounded-2xl p-8 md:p-12 text-white">
+                        <div className="flex flex-col lg:flex-row items-center gap-8">
+                            <div className="flex-1">
+                                <div className="flex items-center space-x-4 mb-4">
+                                    <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center">
+                                        <MessageSquare className="w-7 h-7 text-white" />
+                                    </div>
+                                    <h2 className="text-2xl md:text-3xl font-bold">Layanan Pelaporan Masyarakat</h2>
+                                </div>
+                                <p className="text-sky-100 mb-6">
+                                    Sampaikan laporan, aspirasi, atau pengaduan Anda terkait bidang-bidang yang menjadi 
+                                    tanggung jawab Komisi II DPRD Kabupaten Sumbawa.
+                                </p>
+                                <div className="grid sm:grid-cols-2 gap-3 text-sm">
+                                    <div className="flex items-center space-x-2">
+                                        <div className="w-2 h-2 bg-white rounded-full"></div>
+                                        <span>Keuangan Daerah (APBD, Pajak, Retribusi)</span>
+                                    </div>
+                                    <div className="flex items-center space-x-2">
+                                        <div className="w-2 h-2 bg-white rounded-full"></div>
+                                        <span>Perindustrian dan Perdagangan</span>
+                                    </div>
+                                    <div className="flex items-center space-x-2">
+                                        <div className="w-2 h-2 bg-white rounded-full"></div>
+                                        <span>Koperasi dan UMKM</span>
+                                    </div>
+                                    <div className="flex items-center space-x-2">
+                                        <div className="w-2 h-2 bg-white rounded-full"></div>
+                                        <span>Energi dan Sumber Daya Mineral</span>
+                                    </div>
+                                    <div className="flex items-center space-x-2">
+                                        <div className="w-2 h-2 bg-white rounded-full"></div>
+                                        <span>Pariwisata dan Ekonomi Kreatif</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="flex-shrink-0">
+                                {auth?.user ? (
+                                    <Link
+                                        href="/user/reports/create"
+                                        className="inline-flex items-center px-8 py-4 bg-white text-sky-600 font-semibold rounded-xl hover:bg-sky-50 transition-colors shadow-lg"
+                                    >
+                                        Buat Laporan
+                                        <ArrowRight className="ml-2 w-5 h-5" />
+                                    </Link>
+                                ) : (
+                                    <Link
+                                        href="/register"
+                                        className="inline-flex items-center px-8 py-4 bg-white text-sky-600 font-semibold rounded-xl hover:bg-sky-50 transition-colors shadow-lg"
+                                    >
+                                        Daftar untuk Melapor
+                                        <ArrowRight className="ml-2 w-5 h-5" />
+                                    </Link>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             {/* CTA Section */}
             <section className="py-16 bg-sky-500">

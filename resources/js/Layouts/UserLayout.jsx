@@ -1,31 +1,24 @@
 import { Link, usePage } from '@inertiajs/react';
 import { useState } from 'react';
 import { 
-    Menu, X, Home, FileText, Image, Building, LogOut, 
-    ChevronDown, Archive, ImageIcon, MessageSquare
+    Menu, X, Home, FileText, LogOut, ChevronDown, User
 } from 'lucide-react';
 
-export default function AdminLayout({ children, header }) {
+export default function UserLayout({ children, header }) {
     const { auth, flash } = usePage().props;
     const { url } = usePage();
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [userMenuOpen, setUserMenuOpen] = useState(false);
 
     const navigation = [
-        { name: 'Dashboard', href: '/admin/dashboard', icon: Home },
-        { name: 'Banner', href: '/admin/banners', icon: ImageIcon },
-        { name: 'Alur SOP', href: '/admin/services', icon: FileText },
-        { name: 'Arsip Laporan', href: '/admin/archives', icon: Archive },
-        { name: 'Laporan Masyarakat', href: '/admin/reports', icon: MessageSquare },
-        { name: 'Galeri', href: '/admin/gallery', icon: Image },
-        { name: 'Info Kantor', href: '/admin/office-info', icon: Building },
+        { name: 'Dashboard', href: '/user/dashboard', icon: Home },
+        { name: 'Laporan Saya', href: '/user/reports', icon: FileText },
     ];
 
     const isActive = (href) => url.startsWith(href);
 
     return (
         <div className="min-h-screen bg-gray-100">
-            {/* Mobile Sidebar Overlay */}
             {sidebarOpen && (
                 <div 
                     className="fixed inset-0 bg-black/50 z-40 lg:hidden"
@@ -33,18 +26,17 @@ export default function AdminLayout({ children, header }) {
                 />
             )}
 
-            {/* Sidebar */}
             <aside className={`fixed inset-y-0 left-0 w-64 bg-white shadow-lg z-50 transform transition-transform lg:translate-x-0 ${
                 sidebarOpen ? 'translate-x-0' : '-translate-x-full'
             }`}>
                 <div className="flex items-center justify-between h-16 px-4 border-b">
-                    <Link href="/admin/dashboard" className="flex items-center space-x-2">
+                    <Link href="/user/dashboard" className="flex items-center space-x-2">
                         <img 
                             src="/logo/logo.jpeg" 
-                            alt="Logo DPRD Sumbawa" 
+                            alt="Logo" 
                             className="w-8 h-8 rounded-lg object-cover"
                         />
-                        <span className="font-bold text-gray-900">Admin Panel</span>
+                        <span className="font-bold text-gray-900">User Panel</span>
                     </Link>
                     <button 
                         onClick={() => setSidebarOpen(false)}
@@ -77,14 +69,12 @@ export default function AdminLayout({ children, header }) {
                         className="flex items-center px-4 py-3 text-sm text-gray-600 hover:bg-gray-50 rounded-lg"
                     >
                         <Home size={18} className="mr-3" />
-                        Lihat Website
+                        Kembali ke Website
                     </Link>
                 </div>
             </aside>
 
-            {/* Main Content */}
             <div className="lg:pl-64">
-                {/* Top Header */}
                 <header className="sticky top-0 z-30 bg-white shadow-sm">
                     <div className="flex items-center justify-between h-16 px-4 lg:px-8">
                         <button
@@ -101,16 +91,13 @@ export default function AdminLayout({ children, header }) {
                         </div>
 
                         <div className="flex items-center space-x-4">
-                            {/* User Menu */}
                             <div className="relative">
                                 <button
                                     onClick={() => setUserMenuOpen(!userMenuOpen)}
                                     className="flex items-center space-x-2 p-2 hover:bg-gray-100 rounded-lg"
                                 >
                                     <div className="w-8 h-8 bg-sky-100 rounded-full flex items-center justify-center">
-                                        <span className="text-sky-600 font-medium text-sm">
-                                            {auth.user.name.charAt(0).toUpperCase()}
-                                        </span>
+                                        <User className="w-4 h-4 text-sky-600" />
                                     </div>
                                     <span className="hidden sm:block text-sm font-medium text-gray-700">
                                         {auth.user.name}
@@ -146,7 +133,6 @@ export default function AdminLayout({ children, header }) {
                     </div>
                 </header>
 
-                {/* Flash Messages */}
                 {flash?.success && (
                     <div className="mx-4 lg:mx-8 mt-4">
                         <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg">
@@ -163,7 +149,6 @@ export default function AdminLayout({ children, header }) {
                     </div>
                 )}
 
-                {/* Page Content */}
                 <main className="p-4 lg:p-8">
                     {children}
                 </main>
