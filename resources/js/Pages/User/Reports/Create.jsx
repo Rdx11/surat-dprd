@@ -6,7 +6,7 @@ import { ArrowLeft, AlertCircle, Upload, X, Check } from 'lucide-react';
 export default function ReportCreate({ bidangOptions }) {
     const { data, setData, post, processing, errors, progress } = useForm({
         nama: '',
-        nim: '',
+        nik: '',
         laporan: '',
         bukti: null,
         bidang: [],
@@ -94,18 +94,18 @@ export default function ReportCreate({ bidangOptions }) {
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">
-                                NIM <span className="text-red-500">*</span>
+                                NIK <span className="text-red-500">*</span>
                             </label>
                             <input
                                 type="text"
-                                value={data.nim}
-                                onChange={(e) => setData('nim', e.target.value)}
+                                value={data.nik}
+                                onChange={(e) => setData('nik', e.target.value)}
                                 className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 ${
-                                    errors.nim ? 'border-red-500 bg-red-50' : 'border-gray-300'
+                                    errors.nik ? 'border-red-500 bg-red-50' : 'border-gray-300'
                                 }`}
-                                placeholder="Masukkan NIM"
+                                placeholder="Masukkan NIK"
                             />
-                            {errors.nim && <p className="mt-1 text-sm text-red-600 flex items-center"><AlertCircle size={14} className="mr-1" />{errors.nim}</p>}
+                            {errors.nik && <p className="mt-1 text-sm text-red-600 flex items-center"><AlertCircle size={14} className="mr-1" />{errors.nik}</p>}
                         </div>
                     </div>
                 </div>

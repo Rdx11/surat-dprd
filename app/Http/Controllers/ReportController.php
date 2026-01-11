@@ -32,7 +32,7 @@ class ReportController extends Controller
     {
         $validated = $request->validate([
             'nama' => 'required|string|max:255',
-            'nim' => 'required|string|max:50',
+            'nik' => 'required|string|max:50',
             'laporan' => 'required|string',
             'bukti' => 'nullable|file|mimes:jpeg,png,jpg,pdf|max:5120',
             'bidang' => 'required|array|min:1',
@@ -47,7 +47,7 @@ class ReportController extends Controller
         Report::create([
             'user_id' => auth()->id(),
             'nama' => $validated['nama'],
-            'nim' => $validated['nim'],
+            'nik' => $validated['nik'],
             'laporan' => $validated['laporan'],
             'bukti_path' => $buktiPath,
             'bidang' => $validated['bidang'],

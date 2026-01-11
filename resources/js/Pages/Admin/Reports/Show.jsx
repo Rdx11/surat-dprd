@@ -96,8 +96,8 @@ export default function ReportShow({ report, bidangOptions }) {
                                     <p className="font-medium text-gray-900">{report.nama}</p>
                                 </div>
                                 <div>
-                                    <p className="text-sm text-gray-500">NIM</p>
-                                    <p className="font-medium text-gray-900">{report.nim}</p>
+                                    <p className="text-sm text-gray-500">NIK</p>
+                                    <p className="font-medium text-gray-900">{report.nik}</p>
                                 </div>
                                 <div>
                                     <p className="text-sm text-gray-500">Email Akun</p>

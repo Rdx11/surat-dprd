@@ -12,7 +12,7 @@ class Report extends Model
     protected $fillable = [
         'user_id',
         'nama',
-        'nim',
+        'nik',
         'laporan',
         'bukti_path',
         'bidang',

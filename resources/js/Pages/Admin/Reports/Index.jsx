@@ -123,7 +123,7 @@ export default function ReportsIndex({ reports, bidangOptions, filters }) {
                                     <td className="px-6 py-4">
                                         <div>
                                             <p className="font-medium text-gray-900">{report.nama}</p>
-                                            <p className="text-sm text-gray-500">NIM: {report.nim}</p>
+                                            <p className="text-sm text-gray-500">NIK: {report.nik}</p>
                                         </div>
                                     </td>
                                     <td className="px-6 py-4">
